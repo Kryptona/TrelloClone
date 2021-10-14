@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+$border_color: #CFD0D1;
+$card_main_color: #A0ECF9;
+$default_font: 'Open Sans';
+$font_color: #232D52;
+$border_radius: 8px;
+
+%default_card_border{
+  border: 1px solid $border_color;
+  border-radius: 8px;
+}
+
+
+

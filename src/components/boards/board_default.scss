@@ -1,0 +1,21 @@
+@import "../../styles/default";
+
+.root {
+  .board_container {
+    max-width: 340px;
+    height: 76px;
+    @extend %default_card_border;
+    background-color: $card_main_color;
+    font-family: $default_font;
+    color: $font_color;
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      background-color: #65D8EC;
+    }
+  }
+}

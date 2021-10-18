@@ -1,11 +1,11 @@
 import React from 'react';
 import Lamp from "./components/shared/lamp/Lamp";
-import Board from "./components/boards/Board";
+import BoardsPage from "./components/boards/BoardsPage";
 
 const App = () => {
     return (
         <div>
-           <Board/>
+           <BoardsPage/>
         </div>
     );
 };

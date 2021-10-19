@@ -4,9 +4,10 @@ import {Board} from "../../../domain/Board";
 
 interface Props {
     readonly onResult: (value: Board) => void;
+    readonly onCancel: () => void;
 }
 
-export const BoardCreator: React.FC<Props> = ({onResult}) => {
+export const BoardCreator: React.FC<Props> = ({onResult, onCancel}) => {
     const [inputValue, setInputValue] = useState<string>("")
 
     const createBoard = () => {
@@ -29,7 +30,7 @@ export const BoardCreator: React.FC<Props> = ({onResult}) => {
                 />
             </div>
             <div className={styles.button_container}>
-                <button>CANSEL</button>
+                <button onClick={onCancel}>CANSEL</button>
                 <button onClick={createBoard}>CREATE</button>
             </div>
         </div>

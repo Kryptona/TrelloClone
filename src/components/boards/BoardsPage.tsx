@@ -20,13 +20,17 @@ const BoardsPage = () => {
         setBoards([...boards, board]);
     }
 
+    const onCancel = () => {
+        setNewBoard(false);
+    }
+
     return (
         <div className={styles.root}>
             <Lamp/>
             <div className={styles.boards}>
                 {newBoard
                     ?
-                    <BoardCreator onResult={onCreateBoard}/>
+                    <BoardCreator onResult={onCreateBoard} onCancel={onCancel}/>
                     :
                     <div className={styles.board_container} onClick={viewBoardCreator}>
                         <span>Добавить доску</span>

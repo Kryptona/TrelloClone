@@ -1,10 +1,14 @@
-import React from 'react';
-import styles from "./BoardPage/BoardPage.scss";
+import React, {useState} from 'react';
+import styles from "./BoardPage.scss";
 import {useParams} from "react-router-dom";
+import {BoardSection} from "../../domain/BoardSection";
 
 
 export const BoardPage = () => {
-    let {id} = useParams<{ readonly id: string }>();
+    const {id} = useParams<{ readonly id: string }>();
+
+    const [sections, setSections] = useState<BoardSection[]>([]);
+
     console.log("Here!");
     return (
         <div className={styles.root}>

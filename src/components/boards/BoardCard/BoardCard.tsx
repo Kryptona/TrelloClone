@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, useState} from 'react';
+import React, {MouseEventHandler} from 'react';
 import styles from "./BoardCard.scss";
 import {Board} from "../../../domain/Board";
 import close from "../../../img/CloseIcon.svg";
@@ -15,13 +15,15 @@ const BoardCard: React.FC<Props> = ({board, onDelete}) => {
         e.stopPropagation();
         e.preventDefault();
         onDelete(board.id);
-    }
+    };
+
     return (
         <Link to={`/board/${board.id}`}>
             <div className={styles.root}>
                 {board.title}
-                <button onClick={onDeleteWrapper}><img src={close}/></button>
-
+                <button onClick={onDeleteWrapper}>
+                    <img src={close}/>
+                </button>
             </div>
         </Link>
     );

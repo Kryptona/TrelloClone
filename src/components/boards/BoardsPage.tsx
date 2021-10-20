@@ -7,28 +7,33 @@ import BoardCard from "./BoardCard/BoardCard";
 
 const BoardsPage = () => {
 
-    const [newBoard, setNewBoard] = useState(false);
+    const [isBoardCreating, setIsBoardCreating] = useState(false);
     const [boards, setBoards] = useState<ReadonlyArray<Board>>([]);
 
     const viewBoardCreator = () => {
         console.log("Click!");
-        setNewBoard(true);
+        setIsBoardCreating(true);
     }
 
     const onCreateBoard = (board: Board) => {
-        setNewBoard(false);
+        setIsBoardCreating(false);
         setBoards([...boards, board]);
     }
 
     const onCancel = () => {
-        setNewBoard(false);
+        setIsBoardCreating(false);
+    }
+
+    const onDeleteBoard = (id: number) => {
+        const newBoards = [...boards];
+        setBoards(newBoards.splice(id, 1))
     }
 
     return (
         <div className={styles.root}>
             <Lamp/>
             <div className={styles.boards}>
-                {newBoard
+                {isBoardCreating
                     ?
                     <BoardCreator onResult={onCreateBoard} onCancel={onCancel}/>
                     :

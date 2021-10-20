@@ -32,7 +32,7 @@ export const BoardCreator: React.FC<Props> = ({onResult, onCancel}) => {
                 />
             </div>
             <div className={styles.button_container}>
-                <button onClick={onCancel}>CANSEL</button>
+                <button onClick={onCancel}>CANCEL</button>
                 <button onClick={createBoard}>CREATE</button>
             </div>
         </div>

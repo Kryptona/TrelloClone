@@ -4,8 +4,9 @@ import Lamp from "../shared/lamp/Lamp";
 import {BoardCreator} from "./BoardCreator/BoardCreator";
 import {Board} from "../../domain/Board";
 import BoardCard from "./BoardCard/BoardCard";
+import {Guid} from "js-guid";
 
-const BoardsPage = () => {
+export const BoardsPage = () => {
 
     const [isBoardCreating, setIsBoardCreating] = useState(false);
     const [boards, setBoards] = useState<ReadonlyArray<Board>>([]);
@@ -24,9 +25,10 @@ const BoardsPage = () => {
         setIsBoardCreating(false);
     }
 
-    const onDeleteBoard = (id: number) => {
+    const onDeleteBoard = (id: Guid) => {
+
         const newBoards = [...boards];
-        setBoards(newBoards.splice(id, 1))
+        setBoards(newBoards.filter(x => x.id !== id))
     }
 
     return (
@@ -41,10 +43,8 @@ const BoardsPage = () => {
                         <span>Добавить доску</span>
                     </div>
                 }
-                {boards.map((board, index) => (<BoardCard key={index} board={board}/>))}
+                {boards.map((board, index) => (<BoardCard key={index} board={board} onDelete={onDeleteBoard}/>))}
             </div>
         </div>
     );
 };
-
-export default BoardsPage;

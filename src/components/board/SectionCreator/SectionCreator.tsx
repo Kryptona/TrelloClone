@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import styles from "./SectionCreator.scss";
 
-interface Props{
+interface Props {
     onCloseCreator: () => void;
+    onAddSectionName: (name: string) => void;
 }
 
-export const SectionCreator: React.FC<Props> = ({onCloseCreator}) => {
+export const SectionCreator: React.FC<Props> = ({onCloseCreator, onAddSectionName}) => {
     const [inputValue, setInputValue] = useState("");
 
     const wrapperOnClose = () => {
         onCloseCreator();
+    }
+
+    const wrapperOnAddSectionName = () => {
+        onAddSectionName(inputValue);
     }
 
     return (
@@ -21,7 +26,7 @@ export const SectionCreator: React.FC<Props> = ({onCloseCreator}) => {
                 onChange={event => setInputValue(event.target.value)}
             />
             <div className={styles.bts}>
-                <button className={styles.add_section_bt}>Добавить список</button>
+                <button onClick={wrapperOnAddSectionName} className={styles.add_section_bt}>Добавить список</button>
                 <button onClick={wrapperOnClose}>X</button>
             </div>
 

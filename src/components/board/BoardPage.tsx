@@ -7,9 +7,6 @@ import {Guid} from "js-guid";
 import {BoardTask} from "../../domain/BoardTask";
 import Lamp from "../shared/lamp/Lamp";
 
-interface Props {
-
-}
 
 export const BoardPage = () => {
     const {id} = useParams<{ readonly id: string }>();
@@ -17,6 +14,7 @@ export const BoardPage = () => {
     const [sections, setSections] = useState<BoardSection[]>([]);
 
     const onAddSection = (section: BoardSection) => {
+        console.log(sections);
         setSections([...sections, section]);
     }
 

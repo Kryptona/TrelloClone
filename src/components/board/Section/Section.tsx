@@ -3,6 +3,8 @@ import styles from "./Section.scss";
 import {BoardSection} from "../../../domain/BoardSection";
 import {Task} from "../Task/Task";
 import {SectionCreator} from "../SectionCreator/SectionCreator";
+import {Guid} from "js-guid";
+import {BoardTask} from "../../../domain/BoardTask";
 
 interface Props {
     section: BoardSection;
@@ -11,15 +13,21 @@ interface Props {
 
 export const Section: React.FC<Props> = ({section, onAddSection}) => {
     const [isCreateSection, setIsCreateSection] = useState(false);
-    console.log(isCreateSection);
+    const [title, setTitle] = useState(""); //чтобы ы будущем динамически исправлять название
 
-    const wrapperAddSection = () => {
-
+    const wrapperOnAddSection = (name: string) => {
+        onAddSection({
+            id: new Guid(),
+            boardId: null,
+            name: name,
+            tasks: [],
+        })
+        setIsCreateSection(false);
+        setTitle(name);
     }
 
     const renderSectionForm = () => {
         setIsCreateSection(true);
-        console.log("form")
     }
 
     const onCloseSectionCreator = () => {
@@ -33,7 +41,7 @@ export const Section: React.FC<Props> = ({section, onAddSection}) => {
                 <div className={styles.empty_section}>
                     {isCreateSection
                         ?
-                        <SectionCreator onCloseCreator={onCloseSectionCreator}/>
+                        <SectionCreator onCloseCreator={onCloseSectionCreator} onAddSectionName={wrapperOnAddSection} />
                         :
                         <button className={styles.add_section} onClick={renderSectionForm}>+ Добавить колонку
                         </button>

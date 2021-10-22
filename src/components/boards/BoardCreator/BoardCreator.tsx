@@ -16,6 +16,7 @@ export const BoardCreator: React.FC<Props> = ({onResult, onCancel}) => {
             id: new Guid(),
             title: inputValue,
             dateTime: new Date(),
+            sections: [],
         };
         onResult(board);
     }

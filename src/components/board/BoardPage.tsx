@@ -12,10 +12,11 @@ export const BoardPage = () => {
     const {id} = useParams<{ readonly id: string }>();
 
     const [sections, setSections] = useState<BoardSection[]>([]);
-
+    console.log(sections);
     const onAddSection = (section: BoardSection) => {
-        console.log(sections);
-        setSections([...sections, section]);
+        console.log(section);
+        setSections([...sections, section])
+
     }
 
     return (
@@ -24,9 +25,9 @@ export const BoardPage = () => {
             {
                 sections.length == 0
                     ?
-                    <Section section={{} as BoardSection} onAddSection={onAddSection}/>
+                    <Section section={{} as BoardSection} onAddSection={onAddSection} boardId={new Guid(id)}/>
                     :
-                    sections.map((section) => <Section section={section} onAddSection={onAddSection} />)
+                    sections.map((section) => <Section section={section} onAddSection={onAddSection} boardId={new Guid(id)}/>)
             }
         </div>
     );

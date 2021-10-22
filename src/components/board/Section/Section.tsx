@@ -9,16 +9,17 @@ import {BoardTask} from "../../../domain/BoardTask";
 interface Props {
     section: BoardSection;
     onAddSection: (section: BoardSection) => void;
+    boardId: Guid;
 }
 
-export const Section: React.FC<Props> = ({section, onAddSection}) => {
+export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
     const [isCreateSection, setIsCreateSection] = useState(false);
     const [title, setTitle] = useState(""); //чтобы ы будущем динамически исправлять название
 
     const wrapperOnAddSection = (name: string) => {
         onAddSection({
             id: new Guid(),
-            boardId: null,
+            boardId: boardId,
             name: name,
             tasks: [],
         })

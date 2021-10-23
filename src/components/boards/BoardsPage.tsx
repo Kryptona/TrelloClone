@@ -32,19 +32,19 @@ export const BoardsPage = () => {
 
     return (
         <div className={styles.root}>
-            {/*<BoardPage/>*/}
-            <Lamp/>
-            <div className={styles.boards}>
-                {isBoardCreating
-                    ?
-                    <BoardCreator onResult={onCreateBoard} onCancel={onCancel}/>
-                    :
-                    <div className={styles.board_container} onClick={viewBoardCreator}>
-                        <span>Добавить доску</span>
-                    </div>
-                }
-                {boards.map((board, index) => (<BoardCard key={index} board={board} onDelete={onDeleteBoard}/>))}
-            </div>
+            <BoardPage/>
+            {/*<Lamp/>*/}
+            {/*<div className={styles.boards}>*/}
+            {/*    {isBoardCreating*/}
+            {/*        ?*/}
+            {/*        <BoardCreator onResult={onCreateBoard} onCancel={onCancel}/>*/}
+            {/*        :*/}
+            {/*        <div className={styles.board_container} onClick={viewBoardCreator}>*/}
+            {/*            <span>Добавить доску</span>*/}
+            {/*        </div>*/}
+            {/*    }*/}
+            {/*    {boards.map((board, index) => (<BoardCard key={index} board={board} onDelete={onDeleteBoard}/>))}*/}
+            {/*</div>*/}
         </div>
     );
 };

@@ -1,3 +1,9 @@
 .root{
 
+  .container{
+    display: flex;
+    flex-flow: row;
+    margin: 0 20px;
+    align-items: flex-start;
+  }
 }

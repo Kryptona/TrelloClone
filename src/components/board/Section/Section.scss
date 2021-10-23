@@ -1,25 +1,13 @@
 @import "../../../styles/default";
-$section_bg_color: #e7eaef;
 
 .root {
   width: 272px;
+  min-height: 120px;
   background-color: $section_bg_color;
   border-radius: 8px;
-
-  .empty_section{
-    .add_section {
-      border: none;
-      background-color: transparent;
-      width: 100%;
-      padding: $default_padding;
-
-      &:hover{
-        background-color: darken($section_bg_color, 10%);
-        border-radius: 8px;
-      }
-    }
-  }
-
-
-
+  margin: 0 20px;
 }
+
+
+
+

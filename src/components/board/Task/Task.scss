@@ -1,3 +1,9 @@
-.root{
+@import "../../../styles/default";
 
+.root {
+  background-color: white;
+  border-radius: $border_radius;
+  padding: $default_padding;
+  box-shadow: $box_shadow;
+  margin: 10px 0;
 }

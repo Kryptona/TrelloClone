@@ -14,6 +14,7 @@ $color: #0079BF;
     width: 100%;
     padding: $default_padding;
     min-height: 30px;
+    font-family: $default_font;
 
     &:hover {
       background-color: darken($section_bg_color, 10%);

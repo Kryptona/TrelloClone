@@ -1,7 +1,7 @@
-@import "../../../styles/default";
+@import '../../../styles/default';
 
-.root{
-  .add_task_bt{
+.root {
+  .add_task_bt {
     outline: none;
     border: none;
     background-color: transparent;
@@ -12,8 +12,30 @@
 
     color: #484649;
 
-    &:hover{
+    &:hover {
       background-color: darken($section_bg_color, 10%);
     }
+  }
+
+  .bt_container {
+    button{
+      border: none;
+    }
+    .add_task_bt_form {
+      @extend %add_bt_default;
+      margin-right: 10px;
+    }
+  }
+
+  .txtarea {
+    border: none;
+    background-color: white;
+    border-radius: $border_radius;
+    box-shadow: $box_shadow;
+    padding: $default_padding;
+    margin: $vertical_mg;
+    resize: none;
+    width: 100%;
+    outline: none;
   }
 }

@@ -20,6 +20,7 @@ export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId}) => {
       desc: '',
     });
 
+    setName("");
     setIsCreating(false);
   };
 
@@ -28,13 +29,14 @@ export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId}) => {
       {isCreating ? (
         <div>
           <textarea
+              className={styles.txtarea}
             placeholder={'Введите заголовок для этой карточки'}
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
           <div className={styles.bt_container}>
-            <button onClick={wrapperOnAddTask}>Добавить карточку</button>
-            <button>Х</button>
+            <button className={styles.add_task_bt_form} onClick={wrapperOnAddTask}>Добавить карточку</button>
+            <button onClick={() => setIsCreating(false)}>Х</button>
           </div>
         </div>
       ) : (

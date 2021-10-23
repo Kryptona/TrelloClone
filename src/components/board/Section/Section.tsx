@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styles from "./Section.scss";
 import {BoardSection} from "../../../domain/BoardSection";
-import {Task} from "../Task/Task";
+import {TaskCreator} from "../TaskCreator/TaskCreator";
 import {SectionCreator} from "../SectionCreator/SectionCreator";
 import {Guid} from "js-guid";
 import {BoardTask} from "../../../domain/BoardTask";
+import {Task} from "../Task/Task";
 
 interface Props {
     onAddSection: (section: BoardSection) => void;
@@ -13,7 +14,15 @@ interface Props {
 }
 
 export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
-    const [title, setTitle] = useState(""); //чтобы ы будущем динамически исправлять название
+    const [title, setTitle] = useState(section.name);
+    const [tasks, setTasks] = useState(section.tasks);
+
+    const [isCreateTask, setIsCreateTask] = useState(false);
+
+    const onAddTask = (task: BoardTask) => {
+        console.log(task);
+        setTasks([...tasks, task]);
+    }
 
     return (
         <div className={styles.root}>
@@ -21,8 +30,9 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
                 <div className={styles.title}>
                     {title}
                 </div>
-                {/*{section.tasks.map((task, index) => <Task key={index} task={task}/>)}*/}
-                <button>+ Добавить карточку</button>
+                {tasks.map((task, index) => <Task key={index} task={task}/>)}
+                <TaskCreator onAddTask={onAddTask} sectionId={section.id}/>
+
             </div>
         </div>
     );

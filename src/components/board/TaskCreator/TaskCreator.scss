@@ -1,0 +1,19 @@
+@import "../../../styles/default";
+
+.root{
+  .add_task_bt{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border-radius: $border_radius;
+
+    color: #484649;
+
+    &:hover{
+      background-color: darken($section_bg_color, 10%);
+    }
+  }
+}

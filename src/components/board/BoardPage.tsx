@@ -14,7 +14,6 @@ export const BoardPage = () => {
 
     const [sections, setSections] = useState<BoardSection[]>([]);
 
-
     const wrapperOnAddSection = (name: string) => {
         onAddSection({
             id: new Guid(),
@@ -22,12 +21,14 @@ export const BoardPage = () => {
             name: name,
             tasks: [],
         })
-        // setIsCreateSection(false);
-        // setTitle(name);
     }
 
     const onAddSection = (section: BoardSection) => {
         setSections([...sections, section])
+    }
+
+    const changeSection = () => {
+
     }
 
     return (
@@ -35,12 +36,10 @@ export const BoardPage = () => {
             <Lamp/>
 
             <div className={styles.container}>
-                {sections.map((section) => <Section section={section} onAddSection={onAddSection} boardId={new Guid(id)}/>)}
+                {sections.map((section) => <Section section={section} onAddSection={onAddSection}
+                                                    boardId={new Guid(id)}/>)}
                 <SectionCreator onAddSectionName={wrapperOnAddSection}/>
             </div>
-            {/*<Section section={{} as BoardSection} onAddSection={onAddSection} boardId={new Guid(id)}/>*/}
-
-
         </div>
     );
 };

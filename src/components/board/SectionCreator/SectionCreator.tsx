@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import styles from "./SectionCreator.scss";
+import {BoardSection} from "../../../domain/BoardSection";
 
 interface Props {
     onAddSectionName: (name: string) => void;
+    onAdd: (section: BoardSection) => void;
 }
 
-export const SectionCreator: React.FC<Props> = ({onAddSectionName}) => {
-    const [inputValue, setInputValue] = useState("");
+export const SectionCreator: React.FC<Props> = ({onAddSectionName, onAdd}) => {
+    const [name, setName] = useState("");
     const [isCreateSection, setIsCreateSection] = useState(false);
 
-    const wrapperCreatorState = () => {
-        setIsCreateSection(!isCreateSection);
-    }
-
     const wrapperOnAddSectionName = () => {
-        onAddSectionName(inputValue);
+        onAddSectionName(name);
+        setIsCreateSection(false);
+        setName("");
     }
 
     return (
@@ -26,17 +26,17 @@ export const SectionCreator: React.FC<Props> = ({onAddSectionName}) => {
                     <input
                         type="text"
                         placeholder="Введите заголовок списка"
-                        value={inputValue}
-                        onChange={event => setInputValue(event.target.value)}
+                        value={name}
+                        onChange={event => setName(event.target.value)}
                     />
                     <div className={styles.bts}>
                         <button onClick={wrapperOnAddSectionName} className={styles.add_section_bt}>Добавить список
                         </button>
-                        <button onClick={wrapperCreatorState}>X</button>
+                        <button onClick={() => setIsCreateSection(false)}>X</button>
                     </div>
                 </div>
                 :
-                <button className={styles.add_section} onClick={wrapperCreatorState}>+ Добавить колонку
+                <button className={styles.add_section} onClick={() => setIsCreateSection(true)}>+ Добавить колонку
                 </button>
             }
         </div>

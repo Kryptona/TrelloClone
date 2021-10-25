@@ -4,10 +4,10 @@ import {BoardSection} from "../../../domain/BoardSection";
 
 interface Props {
     onAddSectionName: (name: string) => void;
-    onAdd: (section: BoardSection) => void;
+    // onAdd: (section: BoardSection) => void;
 }
 
-export const SectionCreator: React.FC<Props> = ({onAddSectionName, onAdd}) => {
+export const SectionCreator: React.FC<Props> = ({onAddSectionName}) => {
     const [name, setName] = useState("");
     const [isCreateSection, setIsCreateSection] = useState(false);
 

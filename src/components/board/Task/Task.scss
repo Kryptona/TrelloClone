@@ -6,4 +6,17 @@
   padding: $default_padding;
   box-shadow: $box_shadow;
   margin: 10px 0;
+
+  &:hover {
+    background-color: darken(white, 10%);
+  }
+
+  .modal_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+  }
+
 }

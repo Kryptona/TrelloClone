@@ -27,10 +27,6 @@ export const BoardPage = () => {
         setSections([...sections, section])
     }
 
-    const changeSection = () => {
-
-    }
-
     return (
         <div className={styles.root}>
             <Lamp/>

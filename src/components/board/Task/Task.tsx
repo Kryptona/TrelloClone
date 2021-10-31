@@ -1,7 +1,7 @@
 import React from 'react';
 import {BoardTask} from '../../../domain/BoardTask';
 import styles from './Task.scss';
-import {TaskModal} from '../TaskModal/TaskModal';
+import {Modal} from '../TaskModal/Modal';
 
 interface Props {
   readonly task: BoardTask;
@@ -21,7 +21,7 @@ export const Task: React.FC<Props> = ({task}) => {
       <div className={styles.container} onClick={handleOpen}>
         <div className={styles.name}>{task.name}</div>
       </div>
-      <TaskModal handleClose={handleClose} isOpen={open} name={task.name}/>
+      {open ? <Modal handleClose={handleClose} /> : <></>}
     </div>
   );
 };

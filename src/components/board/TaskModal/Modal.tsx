@@ -1,22 +1,39 @@
-import React, {MouseEvent, MouseEventHandler} from 'react';
-import styles from "./Modal.scss";
+import React, {MouseEvent, MouseEventHandler, useState} from 'react';
+import styles from './Modal.scss';
 
-interface Props{
-    handleClose: () => void;
+interface Props {
+  handleClose: () => void;
+  cardName: string;
+  sectionName: string;
+  handleDesc: (newDec: string) => void;
+  desc: string;
 }
 
-export const Modal: React.FC<Props> = ({handleClose}) => {
+export const Modal: React.FC<Props> = ({handleClose, cardName, sectionName, handleDesc, desc}) => {
+  const onContainerClick: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-    const onContainerClick: MouseEventHandler<HTMLDivElement> = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    return (
-        <div className={styles.root} onClick={handleClose}>
-            <div className={styles.modal_container} onClick={onContainerClick}>
-
-            </div>
+  return (
+    <div className={styles.root} onClick={handleClose}>
+      <div className={styles.modal_container} onClick={onContainerClick}>
+        <div className={styles.header}>
+          <div className={styles.cardName}>{cardName}</div>
+          <div className={styles.column}>
+            в колонку <span>{sectionName}</span>
+          </div>
         </div>
-    );
+        <div className={styles.desc}>
+          <div className={styles.title}>Описание</div>
+          <textarea
+            placeholder={'Добавить более подробное описание...'}
+            onChange={(event) => handleDesc(event.target.value)}
+            value={desc}
+          />
+        </div>
+        <div className={styles.color_priority}>Заглушка для цвета</div>
+      </div>
+    </div>
+  );
 };

@@ -6,9 +6,10 @@ import {Guid} from 'js-guid';
 interface Props {
   onAddTask: (task: BoardTask) => void;
   sectionId: Guid;
+  sectionName: string;
 }
 
-export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId}) => {
+export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId, sectionName}) => {
   const [name, setName] = useState('');
   const [isCreating, setIsCreating] = useState(false);
 
@@ -18,6 +19,7 @@ export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId}) => {
       sectionId: sectionId,
       name: name,
       desc: '',
+      sectionName: sectionName,
     });
 
     setName("");

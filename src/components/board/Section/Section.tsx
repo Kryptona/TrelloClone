@@ -31,8 +31,7 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
                     {title}
                 </div>
                 {tasks.map((task, index) => <Task key={index} task={task}/>)}
-                <TaskCreator onAddTask={onAddTask} sectionId={section.id}/>
-
+                <TaskCreator onAddTask={onAddTask} sectionId={section.id} sectionName={title}/>
             </div>
         </div>
     );

@@ -5,4 +5,5 @@ export interface BoardTask {
     sectionId: Guid;
     name: string;
     desc: string;
+    sectionName: string;
 }

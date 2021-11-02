@@ -1,4 +1,4 @@
-@import "../../../styles/default";
+@import '../../../styles/default';
 
 .root {
   width: 100vw;
@@ -8,7 +8,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  .modal_container{
+  .modal_container {
     background-color: white;
     width: 30%;
     height: 25%;
@@ -17,6 +17,43 @@
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+
+    color: $font_color;
+    font-family: $default_font;
+    padding: 20px;
+    .header {
+      margin-bottom: 20px;
+      .cardName {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .column {
+        color: #232d5296;
+        span {
+          text-decoration-line: underline;
+        }
+      }
+    }
+
+    .desc {
+      .title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      textarea {
+        border: none;
+        border-radius: 8px;
+        resize: none;
+        width: 100%;
+        outline: none;
+        background-color: $section_bg_color;
+        font-family: $default_font;
+        padding: 10px;
+      }
+    }
+    .color_priority {
+    }
   }
 }

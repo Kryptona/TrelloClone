@@ -1,4 +1,3 @@
-import {Guid} from "js-guid";
 import {BoardSection} from "./BoardSection";
 
 export interface Board {

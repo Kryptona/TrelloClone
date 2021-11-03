@@ -3,7 +3,6 @@ import styles from "./BoardCard.scss";
 import {Board} from "../../../domain/Board";
 import close from "../../../img/CloseIcon.svg";
 import {Link} from "react-router-dom";
-import {Guid} from "js-guid";
 
 interface Props {
     readonly board: Board,
@@ -16,6 +15,8 @@ const BoardCard: React.FC<Props> = ({board, onDelete}) => {
         e.preventDefault();
         onDelete(board.id);
     };
+
+    console.log("In BoardCard id is     "  + board.id);
 
     return (
         <Link to={`/board/${board.id}`}>

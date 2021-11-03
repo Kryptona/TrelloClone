@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import styles from './Section.scss';
 import {BoardSection} from '../../../domain/BoardSection';
 import {TaskCreator} from '../TaskCreator/TaskCreator';
-import {SectionCreator} from '../SectionCreator/SectionCreator';
-import {Guid} from 'js-guid';
 import {BoardTask} from '../../../domain/BoardTask';
 import {Task} from '../Task/Task';
 
@@ -20,7 +18,14 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
   const [isCreateTask, setIsCreateTask] = useState(false);
 
   const onAddTask = (task: BoardTask) => {
-    setTasks([...tasks, task]);
+    const newTasks = [...tasks, task]
+    setTasks(newTasks);
+    onAddSection({
+      id: section.id,
+      name: section.name,
+      boardId: section.boardId,
+      tasks: newTasks
+    })
   };
 
   return (

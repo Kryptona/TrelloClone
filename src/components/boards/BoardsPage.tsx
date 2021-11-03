@@ -4,7 +4,6 @@ import Lamp from '../shared/lamp/Lamp';
 import {BoardCreator} from './BoardCreator/BoardCreator';
 import {Board} from '../../domain/Board';
 import BoardCard from './BoardCard/BoardCard';
-import {Guid} from 'js-guid';
 import {boardsApi} from '../../api/boardsApi';
 
 export const BoardsPage = () => {
@@ -39,7 +38,6 @@ export const BoardsPage = () => {
 
   return (
     <div className={styles.root}>
-      {/*<BoardPage/>*/}
       <Lamp />
       <div className={styles.boards}>
         {isBoardCreating ? (

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BoardTask} from '../../../domain/BoardTask';
 import styles from './TaskCreator.scss';
-import {Guid} from 'js-guid';
+import {guid} from "../../../utils/guidUtils";
 
 interface Props {
   onAddTask: (task: BoardTask) => void;
@@ -15,7 +15,7 @@ export const TaskCreator: React.FC<Props> = ({onAddTask, sectionId, sectionName}
 
   const wrapperOnAddTask = () => {
     onAddTask({
-      id: new Guid(),
+      id: guid(),
       sectionId: sectionId,
       name: name,
       desc: '',

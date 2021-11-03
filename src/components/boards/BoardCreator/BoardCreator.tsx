@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from "./BoardCreator.scss";
 import {Board} from "../../../domain/Board";
-import { Guid } from 'js-guid';
+import {guid} from "../../../utils/guidUtils";
 
 interface Props {
     readonly onResult: (value: Board) => void;
@@ -13,7 +13,7 @@ export const BoardCreator: React.FC<Props> = ({onResult, onCancel}) => {
 
     const createBoard = () => {
         const board: Board = {
-            id: new Guid(),
+            id: guid(),
             title: inputValue,
             dateTime: new Date(),
             sections: [],

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styles from './SectionCreator.scss';
-import {BoardSection} from '../../../domain/BoardSection';
 
 interface Props {
   onAddSectionName: (name: string) => void;

@@ -1,4 +1,4 @@
-@import "../../../styles/default";
+@import '../../../styles/default';
 
 .root {
   background-color: white;
@@ -11,12 +11,11 @@
     background-color: darken(white, 10%);
   }
 
-  .modal_box{
+  .modal_box {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
   }
-
 }

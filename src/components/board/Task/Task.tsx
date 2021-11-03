@@ -9,11 +9,11 @@ interface Props {
 
 export const Task: React.FC<Props> = ({task}) => {
   const [open, setOpen] = useState(true);
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState('');
 
   const handleDesc = (newDesc: string) => {
     setDesc(newDesc);
-  }
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,7 +27,17 @@ export const Task: React.FC<Props> = ({task}) => {
       <div className={styles.container} onClick={handleOpen}>
         <div className={styles.name}>{task.name}</div>
       </div>
-      {open ? <Modal handleClose={handleClose} cardName={task.name} sectionName={task.sectionName} handleDesc={handleDesc} desc={desc}/> : <></>}
+      {open ? (
+        <Modal
+          handleClose={handleClose}
+          cardName={task.name}
+          sectionName={task.sectionName}
+          handleDesc={handleDesc}
+          descFromTask={desc}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

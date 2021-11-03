@@ -1,12 +1,12 @@
-@import "../../../styles/default";
+@import '../../../styles/default';
 
-$color: #0079BF;
+$color: #0079bf;
 
 .root {
   width: 272px;
   background-color: $section_bg_color;
   border-radius: 8px;
-  max-height:  88px;
+  max-height: 88px;
 
   .add_section {
     border: none;
@@ -25,7 +25,7 @@ $color: #0079BF;
   .container {
     padding: $default_padding;
 
-   input {
+    input {
       width: 100%;
       height: 30px;
       border: 2px solid $color;

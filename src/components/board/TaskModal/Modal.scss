@@ -1,5 +1,10 @@
 @import '../../../styles/default';
 
+$blue: #87ceeb;
+$plum: #dda0dd;
+$brown: #fff8dc;
+$gray: #dcdcdc;
+
 .root {
   width: 100vw;
   height: 100vh;
@@ -52,8 +57,6 @@
         font-family: $default_font;
         padding: 10px;
       }
-    }
-    .color_priority {
     }
   }
 }

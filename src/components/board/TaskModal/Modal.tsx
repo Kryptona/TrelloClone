@@ -6,13 +6,25 @@ interface Props {
   cardName: string;
   sectionName: string;
   handleDesc: (newDec: string) => void;
-  desc: string;
+  descFromTask: string;
 }
 
-export const Modal: React.FC<Props> = ({handleClose, cardName, sectionName, handleDesc, desc}) => {
+export const Modal: React.FC<Props> = ({handleClose, cardName, sectionName, handleDesc, descFromTask}) => {
   const onContainerClick: MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
+  };
+
+  const [desc, setDesc] = useState('');
+
+  const onSaveDesc = () => {
+    handleDesc(desc);
+    handleClose();
+  };
+
+  const onCancelDesc = () => {
+    setDesc(descFromTask);
+    handleClose();
   };
 
   return (
@@ -28,11 +40,14 @@ export const Modal: React.FC<Props> = ({handleClose, cardName, sectionName, hand
           <div className={styles.title}>Описание</div>
           <textarea
             placeholder={'Добавить более подробное описание...'}
-            onChange={(event) => handleDesc(event.target.value)}
+            onChange={(event) => setDesc(event.target.value)}
             value={desc}
           />
         </div>
-        <div className={styles.color_priority}>Заглушка для цвета</div>
+        <div className={styles.desc_bts}>
+          <button onClick={onSaveDesc}>Сохранить</button>
+          <button onClick={onCancelDesc}>Отменить</button>
+        </div>
       </div>
     </div>
   );

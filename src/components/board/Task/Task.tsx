@@ -5,14 +5,17 @@ import {Modal} from '../TaskModal/Modal';
 
 interface Props {
   readonly task: BoardTask;
+  readonly onUpdate: (task: BoardTask) => void;
 }
 
-export const Task: React.FC<Props> = ({task}) => {
-  const [open, setOpen] = useState(true);
-  const [desc, setDesc] = useState('');
+export const Task: React.FC<Props> = ({task, onUpdate}) => {
+  const [open, setOpen] = useState(false);
 
   const handleDesc = (newDesc: string) => {
-    setDesc(newDesc);
+    const newTask = {...task, desc: newDesc};
+    console.log("newTask  ", newTask);
+    onUpdate(newTask);
+
   };
 
   const handleOpen = () => {
@@ -27,17 +30,7 @@ export const Task: React.FC<Props> = ({task}) => {
       <div className={styles.container} onClick={handleOpen}>
         <div className={styles.name}>{task.name}</div>
       </div>
-      {open ? (
-        <Modal
-          handleClose={handleClose}
-          cardName={task.name}
-          sectionName={task.sectionName}
-          handleDesc={handleDesc}
-          descFromTask={desc}
-        />
-      ) : (
-        <></>
-      )}
+      {open && <Modal handleClose={handleClose} task={task} onHandleDesc={handleDesc} />}
     </div>
   );
 };

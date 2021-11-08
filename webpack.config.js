@@ -78,4 +78,16 @@ module.exports = {
         ],
     },
     mode: 'development',
+    devServer: {
+        hot: true,
+        open: true,
+        historyApiFallback: true,
+        client: {
+            progress: true,
+            overlay: {
+                errors: true,
+                warnings: false,
+            },
+        },
+    },
 };

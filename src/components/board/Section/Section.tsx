@@ -4,18 +4,20 @@ import {BoardSection} from '../../../domain/BoardSection';
 import {TaskCreator} from '../TaskCreator/TaskCreator';
 import {BoardTask} from '../../../domain/BoardTask';
 import {Task} from '../Task/Task';
-import {boardsApi} from "../../../api/boardsApi";
+import {tasksApi} from "../../../api/tasksApi";
 
 interface Props {
   onAddSection: (section: BoardSection) => void;
-  boardId: Guid;
   section: BoardSection;
   onRemoveSection: (id: Guid) => void;
 }
 
-export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemoveSection}) => {
+export const Section: React.FC<Props> = ({section, onAddSection, onRemoveSection}) => {
   const [title, setTitle] = useState(section.name);
   const [tasks, setTasks] = useState(section.tasks);
+
+  // console.log(tasks);
+  console.log(section);
 
   const onAddTask = (task: BoardTask) => {
     const newTasks = [...tasks, task];
@@ -27,6 +29,12 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemo
       tasks: newTasks,
     });
   };
+  const onRemoveTask = (task: BoardTask) => {
+    const newTasks = tasks.filter(t => t.id !== task.id);
+    setTasks([...newTasks]);
+    onAddSection({...section, tasks: newTasks});
+  }
+
 
   //todo подключить редакс и переписать это гавно
   // переписать все useState в редакс
@@ -35,7 +43,8 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemo
     const index = newTasks.findIndex(t => t.id == task.id);
     newTasks[index] = task;
     setTasks(newTasks);
-    boardsApi.postTask(task);
+    // tasksApi.postTask(task);
+    onAddSection({...section, tasks: newTasks});
   };
 
   return (
@@ -44,7 +53,7 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemo
         <button onClick={() => onRemoveSection(section.id)}>X</button>
         <div className={styles.title}>{title}</div>
         {tasks.map((task, index) => (
-          <Task key={index} task={task} onUpdate={onUpdateTask} />
+          <Task key={index} task={task} onUpdate={onUpdateTask} onRemoveTask={onRemoveTask} />
         ))}
         <TaskCreator onAddTask={onAddTask} sectionId={section.id} sectionName={title} />
       </div>

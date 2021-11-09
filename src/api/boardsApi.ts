@@ -1,6 +1,5 @@
 import {Board} from '../domain/Board';
-import {BoardSection} from '../domain/BoardSection';
-import {BoardTask} from '../domain/BoardTask';
+import {sectionsApi} from './sectionsApi';
 
 function getBoards(): Promise<Board[]> {
   const jsonBoards = localStorage.getItem('boards');
@@ -23,7 +22,7 @@ function removeBoard(boardId: Guid): Promise<void> {
 }
 
 function removeSectionsHelper(boardId: Guid): Promise<void> {
-  getSections(boardId).then((sections) => {
+  sectionsApi.getSections(boardId).then((sections) => {
     const newSections = sections.filter((s) => s.boardId !== boardId);
     localStorage.removeItem('sections');
     localStorage.setItem('sections', JSON.stringify(newSections));
@@ -31,50 +30,8 @@ function removeSectionsHelper(boardId: Guid): Promise<void> {
   return Promise.resolve();
 }
 
-function getSections(boardId: Guid): Promise<BoardSection[]> {
-  const jsonSections = localStorage.getItem('sections');
-  const sections = (JSON.parse(jsonSections) as BoardSection[]) || [];
-  return Promise.resolve(sections.filter((section) => section.boardId == boardId));
-}
-function postSections(newSection: BoardSection): Promise<void> {
-  const jsonSections = localStorage.getItem('sections');
-  const sections = (JSON.parse(jsonSections) as BoardSection[]) || [];
-  const oldSections = sections.filter((section) => section.id !== newSection.id);
-  localStorage.setItem('sections', JSON.stringify([...oldSections, newSection]));
-  return Promise.resolve();
-}
-
-function removeSection(id: Guid): Promise<void> {
-  const jsonSections = localStorage.getItem('sections');
-  const sections = JSON.parse(jsonSections) as BoardSection[];
-  const newSections = sections.filter((s) => s.id !== id);
-  localStorage.removeItem('sections');
-  localStorage.setItem('sections', JSON.stringify(newSections));
-  return Promise.resolve();
-}
-
-function postTask(task: BoardTask): Promise<void> {
-  const jsonSections = localStorage.getItem('sections');
-  const sections = (JSON.parse(jsonSections) as BoardSection[]) || [];
-  const tasks = sections.find((s) => s.id === task.sectionId).tasks;
-  const sectionIndex = sections.findIndex((section) => section.id == task.sectionId);
-  const newSections = [...sections];
-  let newTasks = [...tasks];
-  const taskIndex = newTasks.findIndex((t) => t.id == task.id);
-  newTasks[taskIndex] = task;
-  console.log(newSections);
-  newSections[sectionIndex].tasks = newTasks;
-  localStorage.removeItem('sections');
-  localStorage.setItem('sections', JSON.stringify(newSections));
-  return Promise.resolve();
-}
-
 export const boardsApi = {
   getBoards,
   postBoards,
-  getSections,
-  postSections,
-  postTask,
   removeBoard,
-  removeSection,
 } as const;

@@ -5,14 +5,14 @@ import {BoardSection} from '../../domain/BoardSection';
 import {Section} from './Section/Section';
 import Lamp from '../shared/lamp/Lamp';
 import {SectionCreator} from './SectionCreator/SectionCreator';
-import {guid} from "../../utils/guidUtils";
-import {boardsApi} from "../../api/boardsApi";
+import {guid} from '../../utils/guidUtils';
+import {boardsApi} from '../../api/boardsApi';
 
 export const BoardPage = () => {
   const {id} = useParams<{readonly id: string}>();
-  console.log(id);
 
   const [sections, setSections] = useState<BoardSection[]>([]);
+  console.log(sections);
 
   useEffect(() => {
     boardsApi.getSections(id).then((sections) => {
@@ -34,13 +34,20 @@ export const BoardPage = () => {
     boardsApi.postSections(section);
   };
 
+  const onRemoveSection = (id: Guid) => {
+    console.log(id);
+    const newSections = [...sections];
+    console.log(newSections.filter((s) => s.id !== id));
+    setSections(newSections.filter((s) => s.id !== id));
+    boardsApi.removeSection(id);
+  };
+
   return (
     <div className={styles.root}>
       <Lamp />
-
       <div className={styles.container}>
         {sections.map((section) => (
-          <Section section={section} onAddSection={onAddSection} boardId={id} />
+          <Section key={section.id} section={section} onAddSection={onAddSection} boardId={id} onRemoveSection={onRemoveSection} />
         ))}
         <SectionCreator onAddSectionName={wrapperOnAddSection} />
       </div>

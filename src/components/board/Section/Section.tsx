@@ -10,9 +10,10 @@ interface Props {
   onAddSection: (section: BoardSection) => void;
   boardId: Guid;
   section: BoardSection;
+  onRemoveSection: (id: Guid) => void;
 }
 
-export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
+export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemoveSection}) => {
   const [title, setTitle] = useState(section.name);
   const [tasks, setTasks] = useState(section.tasks);
 
@@ -37,9 +38,14 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId}) => {
     boardsApi.postTask(task);
   };
 
+  // const removeSectionWrapper = () => {
+  //   onRemoveSection(section.id);
+  // }
+
   return (
     <div className={styles.root}>
       <div>
+        <button onClick={() => onRemoveSection(section.id)}>X</button>
         <div className={styles.title}>{title}</div>
         {tasks.map((task, index) => (
           <Task key={index} task={task} onUpdate={onUpdateTask} />

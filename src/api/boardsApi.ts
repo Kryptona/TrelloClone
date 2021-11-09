@@ -13,21 +13,21 @@ function postBoards(boards: Board[]): Promise<void> {
 }
 
 function removeBoard(boardId: Guid): Promise<void> {
-  const jsonBoards = localStorage.getItem('boards');
-  const boards = JSON.parse(jsonBoards) as Board[];
-  const newBoards = boards.filter(b => b.id !== boardId);
-  localStorage.removeItem('boards');
-  localStorage.setItem('boards', JSON.stringify(newBoards));
-  removeSectionsHelper(boardId);
+  getBoards().then((boards) => {
+        const newBoards = boards.filter((b) => b.id !== boardId);
+        localStorage.removeItem('boards');
+        localStorage.setItem('boards', JSON.stringify(newBoards));
+        removeSectionsHelper(boardId);
+  })
   return Promise.resolve();
 }
 
-function removeSectionsHelper(boardId: Guid): Promise <void>{
-  const jsonSections = localStorage.getItem('sections')
-  const sections = JSON.parse(jsonSections) as BoardSection[];
-  const newSections = sections.filter(s => s.boardId !== boardId);
-  localStorage.removeItem('sections');
-  localStorage.setItem('sections', JSON.stringify(newSections));
+function removeSectionsHelper(boardId: Guid): Promise<void> {
+  getSections(boardId).then((sections) => {
+    const newSections = sections.filter((s) => s.boardId !== boardId);
+    localStorage.removeItem('sections');
+    localStorage.setItem('sections', JSON.stringify(newSections));
+  })
   return Promise.resolve();
 }
 
@@ -41,6 +41,15 @@ function postSections(newSection: BoardSection): Promise<void> {
   const sections = (JSON.parse(jsonSections) as BoardSection[]) || [];
   const oldSections = sections.filter((section) => section.id !== newSection.id);
   localStorage.setItem('sections', JSON.stringify([...oldSections, newSection]));
+  return Promise.resolve();
+}
+
+function removeSection(id: Guid): Promise<void> {
+  const jsonSections = localStorage.getItem('sections');
+  const sections = JSON.parse(jsonSections) as BoardSection[];
+  const newSections = sections.filter((s) => s.id !== id);
+  localStorage.removeItem('sections');
+  localStorage.setItem('sections', JSON.stringify(newSections));
   return Promise.resolve();
 }
 
@@ -67,4 +76,5 @@ export const boardsApi = {
   postSections,
   postTask,
   removeBoard,
+  removeSection,
 } as const;

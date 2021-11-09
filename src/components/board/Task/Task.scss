@@ -6,9 +6,18 @@
   padding: $default_padding;
   box-shadow: $box_shadow;
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+
+  .remove_btn {
+    visibility: hidden;
+  }
 
   &:hover {
     background-color: darken(white, 10%);
+    .remove_btn {
+      visibility: visible;
+    }
   }
 
   .modal_box {

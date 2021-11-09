@@ -24,17 +24,13 @@ export const Task: React.FC<Props> = ({task, onUpdate, onRemoveTask}) => {
   const handleClose = () => {
     setOpen(false);
   };
-  // const getRemoveBtn = () => {
-  //   console.log('MouseOver!');
-  //   return (<button>X</button>);
-  // };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.container} onClick={handleOpen}>
-        <button onClick={() => onRemoveTask(task)}>X</button>
-        <div className={styles.name}>{task.name}</div>
-      </div>
+    <div className={styles.root} onClick={handleOpen}>
+      <div className={styles.name}>{task.name}</div>
+      <button className={styles.remove_btn} onClick={() => onRemoveTask(task)}>
+        X
+      </button>
       {open && <Modal handleClose={handleClose} task={task} onHandleDesc={handleDesc} />}
     </div>
   );

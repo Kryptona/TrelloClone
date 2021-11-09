@@ -30,14 +30,13 @@ export const BoardPage = () => {
   };
 
   const onAddSection = (section: BoardSection) => {
-    setSections([...sections, section]);
+    const newSections = sections.filter(s => s.id !== section.id);
+    setSections([...newSections, section]);
     boardsApi.postSections(section);
   };
 
   const onRemoveSection = (id: Guid) => {
-    console.log(id);
     const newSections = [...sections];
-    console.log(newSections.filter((s) => s.id !== id));
     setSections(newSections.filter((s) => s.id !== id));
     boardsApi.removeSection(id);
   };

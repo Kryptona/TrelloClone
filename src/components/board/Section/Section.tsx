@@ -38,10 +38,6 @@ export const Section: React.FC<Props> = ({section, onAddSection, boardId, onRemo
     boardsApi.postTask(task);
   };
 
-  // const removeSectionWrapper = () => {
-  //   onRemoveSection(section.id);
-  // }
-
   return (
     <div className={styles.root}>
       <div>

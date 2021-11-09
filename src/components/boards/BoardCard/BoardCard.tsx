@@ -3,6 +3,7 @@ import styles from "./BoardCard.scss";
 import {Board} from "../../../domain/Board";
 import close from "../../../img/CloseIcon.svg";
 import {Link} from "react-router-dom";
+import {boardsApi} from "../../../api/boardsApi";
 
 interface Props {
     readonly board: Board,
@@ -14,6 +15,7 @@ const BoardCard: React.FC<Props> = ({board, onDelete}) => {
         e.stopPropagation();
         e.preventDefault();
         onDelete(board.id);
+        boardsApi.removeBoard(board.id);
     };
 
     console.log("In BoardCard id is     "  + board.id);

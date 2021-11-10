@@ -4,7 +4,6 @@ import {BoardSection} from '../../../domain/BoardSection';
 import {TaskCreator} from '../TaskCreator/TaskCreator';
 import {BoardTask} from '../../../domain/BoardTask';
 import {Task} from '../Task/Task';
-import {tasksApi} from "../../../api/tasksApi";
 
 interface Props {
   onAddSection: (section: BoardSection) => void;
@@ -43,7 +42,6 @@ export const Section: React.FC<Props> = ({section, onAddSection, onRemoveSection
     const index = newTasks.findIndex(t => t.id == task.id);
     newTasks[index] = task;
     setTasks(newTasks);
-    // tasksApi.postTask(task);
     onAddSection({...section, tasks: newTasks});
   };
 

@@ -6,11 +6,14 @@
   padding: $default_padding;
   box-shadow: $box_shadow;
   margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
 
-  .remove_btn {
-    visibility: hidden;
+  .wrapper{
+    .remove_btn {
+      visibility: hidden;
+    }
+
+    display: flex;
+    justify-content: space-between;
   }
 
   &:hover {

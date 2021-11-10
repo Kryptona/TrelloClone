@@ -56,6 +56,10 @@ $gray: #dcdcdc;
         background-color: $section_bg_color;
         font-family: $default_font;
         padding: 10px;
+        margin-bottom: 20px;
+        &:focus {
+          border: 1px solid gray;
+        }
       }
     }
   }
